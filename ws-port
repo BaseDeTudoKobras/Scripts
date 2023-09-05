@@ -6,7 +6,7 @@ sleep 1
 read -p " Porta de ESCUTA : " openssh
 read -p " Porta de CONEXAO : " wsopenssh
 
-echo "Configurando o servidor..."
+echo " Configurando o servidor..."
 sleep 0.5
 
 sed -i "/target_port/d" /usr/local/etc/ws-epro/config.yml
@@ -21,7 +21,7 @@ kill $(ps ax  | grep 'ws-epro' | head -1 | awk '{print $1}')
 systemctl start ws-epro
 sleep 0.3
 clear
-LP='\033[1;31m'
+LP='\033[1;32m'
 NC='\033[0m' # No Color
 echo -e "${LP}"
 echo    "
