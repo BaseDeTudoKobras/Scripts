@@ -1,7 +1,7 @@
 #!/bin/bash
 clear
 pkill -f ws-epro
-echo INSTALANDO O SCRIPT WEBSOCKS PRO
+echo " INSTALANDO O SCRIPT WEBSOCKS PRO"
 sleep 1
 cd
 
@@ -19,16 +19,16 @@ chmod +x /usr/bin/ws-port
 
 #seting port
 clear
-echo INFORME AS PORTAS
+echo " INFORME AS PORTAS"
 sleep 1
-read -p "PUERTO LOCAL : " openssh
-read -p "PUERTO PHYTON : " wsopenssh
+read -p " PORTA DE ESCUTA : " openssh
+read -p " PORTA DE CONEXAO : " wsopenssh
 WS_DIR=/usr/local/etc/ws-epro
 if [ -d "$WS_DIR" ]; then # if it exists,delete it.
     rm -rf "$WS_DIR"
 fi
 mkdir "$WS_DIR"
-echo "CONFIGURANDO SERVIDOR ESPERE..."
+echo " CONFIGURANDO SERVIDOR ESPERE..."
 sleep 0.5
 echo "# verbose level 0=info, 1=verbose, 2=very verbose" >> /usr/local/etc/ws-epro/config.yml
 echo "verbose: 0" >> /usr/local/etc/ws-epro/config.yml
@@ -48,36 +48,37 @@ chmod +x /usr/local/etc/ws-epro/config.yml
 systemctl enable ws-epro
 systemctl start ws-epro
 
-echo "SERVIDOR CONFIGURADO PARA WEBSOCKET PRO..."
+echo " SERVIDOR CONFIGURADO PARA WEBSOCKET PRO..."
 sleep 0.3
 clear
 LP='\033[1;32m'
 NC='\033[0m' # No Color
 echo -e "${LP}"
 echo    "
-    🅺🅾🅱🆁🅰🆂 🆅🅿🅽
- 🆆🅴🅱🆂🅾🅲🅺🅴🆃 🅿🆁🅾
+    KOBRAS VPN
+   WEBSOCKS PRO
 "
 
-echo    "🐍 SCRIPT WEBSOCKET CLOUDFLARE PRO 🐍"
-echo    "KOBRAS VPN"
+echo    " SCRIPT WEBSOCKET CLOUDFLARE PRO "
 echo    ""
-echo    "Miguel Melo"
+echo    " KOBRAS VPN"
 echo    ""
-echo    "╔════════════════════╗"
+echo    " Miguel Melo"
+echo    ""
+echo    " ╔════════════════════╗"
 echo    "   Porta de ESCUTA: $openssh"
 echo    "   Porta de CONEXAO: $wsopenssh"
-echo    "╚════════════════════╝"
+echo    " ╚════════════════════╝"
 echo    ""
-echo    "WEBSOCKET SEM PLANO PRO DA CLOUDFLARE"
+echo    " WEBSOCKET SEM PLANO PRO DA CLOUDFLARE"
 echo    "---------------------------------------"
 echo    ""
-echo    "PARA TROCAR A PORTA DE CONEXAO USE O COMANDO: ws-port"
+echo    " PARA TROCAR A PORTA DE CONEXAO USE O COMANDO: ws-port"
 echo    "---------------------------------------"
 echo    ""
-echo    "PAYLOAD PADRAO"
+echo    " PAYLOAD PADRAO"
 echo    ""
-echo    "GET / HTTP/1.1[crlf]Host: Dominio[crlf]Upgrade: websocket[crlf][crlf]"
+echo    " GET / HTTP/1.1[crlf]Host: Dominio[crlf]Upgrade: websocket[crlf][crlf]"
 echo    "---------------------------------------"
 echo -e "${NC}"
 rm -rf install-ws && cat /dev/null > ~/.bash_history && history -c
