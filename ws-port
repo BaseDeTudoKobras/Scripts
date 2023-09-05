@@ -1,12 +1,12 @@
 #!/bin/bash
 #seting port
 clear
-echo setting port ws-epro
+echo " CONFIGURE AS PORTAS DO WEBSOCKS PRO"
 sleep 1
-read -p "Port openssh : " openssh
-read -p "Port wsOpenssh : " wsopenssh
+read -p " Porta de ESCUTA : " openssh
+read -p " Porta de CONEXAO : " wsopenssh
 
-echo "Procesing to server..."
+echo "Configurando o servidor..."
 sleep 0.5
 
 sed -i "/target_port/d" /usr/local/etc/ws-epro/config.yml
@@ -15,7 +15,7 @@ sed -i "/listen_port/d" /usr/local/etc/ws-epro/config.yml
 sed -i '/portopenssh/a\  target_port: '"$openssh"'' /usr/local/etc/ws-epro/config.yml
 sed -i '/wsopenssh/a\  listen_port: '"$wsopenssh"'' /usr/local/etc/ws-epro/config.yml
 
-echo "Configuration to server..."
+echo " Reiniciando o servico..."
 sleep 1
 kill $(ps ax  | grep 'ws-epro' | head -1 | awk '{print $1}')
 systemctl start ws-epro
@@ -24,9 +24,30 @@ clear
 LP='\033[1;35m'
 NC='\033[0m' # No Color
 echo -e "${LP}"
-echo    "=========== Detail ws-epro ============"
+echo    "
+    KOBRAS VPN
+   WEBSOCKS PRO
+"
+
+echo    " SCRIPT WEBSOCKET CLOUDFLARE PRO "
+echo    ""
+echo    " KOBRAS VPN"
+echo    ""
+echo    " Miguel Melo"
+echo    ""
+echo    " ╔════════════════════╗"
+echo    "   Porta de ESCUTA: $openssh"
+echo    "   Porta de CONEXAO: $wsopenssh"
+echo    " ╚════════════════════╝"
+echo    ""
+echo    " WEBSOCKET SEM PLANO PRO DA CLOUDFLARE"
 echo    "---------------------------------------"
-echo    "   Target Port : $openssh"
-echo    "   Listen Port: $wsopenssh"
-echo    "--------------------------------------"
+echo    ""
+echo    " PARA TROCAR A PORTA DE CONEXAO USE O COMANDO: ws-port"
+echo    "---------------------------------------"
+echo    ""
+echo    " PAYLOAD PADRAO"
+echo    ""
+echo    " GET / HTTP/1.1[crlf]Host: Dominio[crlf]Upgrade: websocket[crlf][crlf]"
+echo    "---------------------------------------"
 echo -e "${NC}"
