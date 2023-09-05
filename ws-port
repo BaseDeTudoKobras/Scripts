@@ -21,7 +21,7 @@ kill $(ps ax  | grep 'ws-epro' | head -1 | awk '{print $1}')
 systemctl start ws-epro
 sleep 0.3
 clear
-LP='\033[1;35m'
+LP='\033[1;31m'
 NC='\033[0m' # No Color
 echo -e "${LP}"
 echo    "
