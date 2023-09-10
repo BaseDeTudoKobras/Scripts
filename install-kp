@@ -21,7 +21,7 @@ echo "80" >> /usr/bin/KP.txt
 echo "KOBRAS VPN" >> /usr/bin/KM.txt
 chmod +x /usr/bin/KP.txt
 chmod +x /usr/bin/KM.txt
-echo " SERVIDOR CONFIGURADO PARA WEBSOCKET PRO..."
+echo " SERVIDOR CONFIGURADO PARA KOBRASPROXY..."
 sleep 2
 clear
 LP='\033[1;32m'
@@ -40,6 +40,7 @@ echo    ""
 echo    "---------------------------------------"
 echo    ""
 echo    " PARA ACESSAR O MENU DIGITE: KobrasProxy"
+echo ""
 echo    "---------------------------------------"
 echo -e "${NC}"
 rm -rf install-kp && cat /dev/null > ~/.bash_history && history -c
