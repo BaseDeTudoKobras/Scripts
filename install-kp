@@ -9,7 +9,7 @@ wget -q --show-progress --load-cookies /tmp/cookies.txt "https://github.com/Base
 chmod +x /usr/local/bin/KobrasProxy
 sleep 2
 #Menu KobrasProxy
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://github.com/BaseDeTudoKobras/Scripts/raw/WS-PRO/ws-port" -O /usr/bin/KobrasProxy && rm -rf /tmp/cookies.txt
+wget -q --show-progress --load-cookies /tmp/cookies.txt "https://github.com/BaseDeTudoKobras/Scripts/raw/KobrasProxy/KobrasProxy" -O /usr/bin/KobrasProxy && rm -rf /tmp/cookies.txt
 chmod +x /usr/bin/KobrasProxy
 sleep 2
 #configuracao inicial
