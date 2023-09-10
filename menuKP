@@ -1,0 +1,156 @@
+{
+    clear
+    LP='\033[1;32m'
+    NC='\033[0m'
+    PORTA=$(cat /usr/bin/KP.txt | sed -n '1p')
+    MSG=$(cat /usr/bin/KM.txt | sed -n '1p')
+    echo -e "${LP} ════════════════════════════════════════"
+    echo "   MENU KOBRAS PROXY"
+    echo ""
+    echo "   DEFINA A PORTA E MSG DO KOBRAS PROXY"
+    echo ""
+    echo "   Miguel Melo"
+    echo " ════════════════════════════════════════"
+    echo ""
+    if [[ $(netstat -tlpn | grep -w KobrasProxy) != @() ]]; then
+    echo -e "   \033[1;34mKOBRASPROXY RODANDO"
+    echo "   PORTA: $PORTA"
+    else
+        echo -e "   \033[1;31mKOBRASPROXY PARADO"
+    if [[ $(netstat -tlpn | grep -w KobrasProxy) != @() ]]; then
+    echo "   PORTA: $PORTA EM USO POR OUTRO SERVIÇO !"
+    else
+        echo -e "   \033[1;34mPORTA: $PORTA"
+    fi
+    fi
+    echo -e "${NC}${LP}"
+    echo "   MENSAGEM: $MSG"
+    echo "-----------------------------------------"
+    echo -e "${NC}"
+    echo " 1: MUDAR PORTA"
+    echo " 2: MUDAR MENSAGEM"
+    echo " 3: INICIAR / REINICIAR SERVIÇO"
+    echo " 4: PARAR SERVIÇO"
+    echo " 5: SAIR DO MENU"
+    echo -e " 0: \033[1;31mREMOVER KOBRASPROXY${NC}"
+    echo ""
+    read -p " ESCOLHA UMA DAS OPÇÕES: " OP
+    echo ""
+    clear
+    sleep 0.2
+    if [[ $OP == @(1) ]]; then
+    clear
+    read -p " INFORME A NOVA PORTA: " OPP1
+    if [[ $OPP1 == @() ]]; then
+    echo ""
+    echo -e " \033[1;31mERRO ! INFORME UMA PORTA !${NC}"
+    echo ""
+    sleep 3
+    KobrasProxy
+    fi
+    if [[ $(netstat -tlpn | grep -w $OPP1) = @() ]]; then
+    sed -i 'd' /usr/bin/KP.txt
+    echo "${OPP1}" >> /usr/bin/KP.txt
+    screen -r -S 'KobrasProxy' -X quit
+    clear
+    echo " REINICIANDO O KOBRASPROXY..."
+    screen -dmS KobrasProxy /usr/local/bin/KobrasProxy -proxy_port 0.0.0.0:$OPP1 -msg="${MSG}"
+    sleep 2
+    KobrasProxy
+    else
+        echo ""
+    echo -e " \033[1;31mPORTA JÁ EM USO !${NC}"
+    echo ""
+    echo " $(netstat -tlpn | grep -h $OPP1)"
+    echo ""
+    sleep 4
+    KobrasProxy
+    fi
+    fi
+    if [[ $OP == @(2) ]]; then
+    clear
+    read -p " ESCREVA O STATUS: " OPP2
+    if [[ $OPP2 != @() ]]; then
+    screen -r -S 'KobrasProxy' -X quit
+    if [[ $(netstat -tlpn | grep -w $PORTA) = @() ]]; then
+    sed -i 'd' /usr/bin/KM.txt
+    echo "${OPP2}" >> /usr/bin/KM.txt
+    clear
+    echo " REINICIANDO O KOBRASPROXY..."
+    screen -dmS KobrasProxy /usr/local/bin/KobrasProxy -proxy_port 0.0.0.0:$PORTA -msg="${OPP2}"
+    sleep 2
+    KobrasProxy
+    else
+        echo ""
+    echo -e " \033[1;31mPORTA JÁ EM USO !${NC}"
+    echo ""
+    echo " $(netstat -tlpn | grep -w $PORT)"
+    echo ""
+    sleep 4
+    KobrasProxy
+    fi
+    else
+        echo -e " \033[1;31mERRO ! ESCREVA ALGUMA COISA !${NC}"
+    echo ""
+    sleep 3
+    KobrasProxy
+    fi
+    fi
+    if [[ $OP == @(3) ]]; then
+    screen -r -S 'KobrasProxy' -X quit
+    clear
+    if [[ $(netstat -tlpn | grep -w $PORTA) = @() ]]; then
+    echo " REINICIANDO O KOBRASPROXY..."
+    screen -dmS KobrasProxy /usr/local/bin/KobrasProxy -proxy_port 0.0.0.0:$PORTA -msg="${MSG}"
+    sleep 2
+    KobrasProxy
+    else
+        echo ""
+    echo -e " \033[1;31mPORTA JÁ EM USO !${NC}"
+    echo ""
+    echo " $(netstat -tlpn | grep -h $PORTA)"
+    echo ""
+    sleep 4
+    KobrasProxy
+    fi
+    fi
+    if [[ $OP == @(4) ]]; then
+    screen -r -S 'KobrasProxy' -X quit
+    clear
+    echo " PARANDO O KOBRASPROXY..."
+    sleep 2
+    KobrasProxy
+    fi
+    if [[ $OP == @(5) ]]; then
+    exit
+    fi
+    if [[ $OP == @(0) ]]; then
+         clear
+         echo -e "\033[1;31m"
+         read -p " DESINSTALAR O KOBRASPROXY ? [S|s] ou [N|n]: " OPP3
+         echo -e "${NC}"
+        if [[ $OPP3 == @(S|s) ]]; then
+             screen -r -S 'KobrasProxy' -X quit
+             clear
+             echo ""
+             echo -e " \033[1;31mDESISTALANDO O KOBRASPROXY... !${NC}"
+    echo ""
+             rm -r /usr/bin/KP.txt
+             rm -r /usr/bin/KM.txt
+             rm -r /usr/bin/KobrasProxy
+             rm -r /usr/local/bin/KobrasProxy
+             sleep 2
+             clear
+             exit
+        else
+             sleep 1
+             KobrasProxy
+        fi
+    fi
+    if [[ $OP != @(1|2|3|4|5|0) ]]; then
+    echo -e " \033[1;31mOPÇÃO INVÁLIDA !${NC}"
+    echo ""
+    sleep 2
+    KobrasProxy
+    fi
+}
