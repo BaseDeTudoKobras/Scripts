@@ -129,7 +129,6 @@
          echo -e "\033[1;31m"
          read -p " DESINSTALAR O KOBRASPROXY ? [S|s] ou [N|n]: " OPP3
          echo -e "${NC}"
-         #read -p " VOCÊ TEM CERTEZA QUE QUER DESINSTALAR O KOBRASPROXY ? [S|s] ou [N|n]: " OPP3
         if [[ $OPP3 == @(S|s) ]]; then
              screen -r -S 'KobrasProxy' -X quit
              clear
@@ -141,9 +140,10 @@
              rm -r /usr/bin/KobrasProxy
              rm -r /usr/local/bin/KobrasProxy
              sleep 2
+             clear
              exit
         else
-             sleep 2
+             sleep 1
              KobrasProxy
         fi
     fi
