@@ -1,0 +1,45 @@
+#!/bin/bash
+clear
+echo " INSTALANDO O SCRIPT KOBRASPROXY"
+sleep 2
+cd
+
+#Install KobrasProxy
+wget -q --show-progress --load-cookies /tmp/cookies.txt "https://github.com/BaseDeTudoKobras/Scripts/raw/$(uname -m)/KobrasProxy" -O /usr/local/bin/KobrasProxy && rm -rf /tmp/cookies.txt
+chmod +x /usr/local/bin/KobrasProxy
+sleep 2
+#Menu KobrasProxy
+wget -q --show-progress --load-cookies /tmp/cookies.txt "https://github.com/BaseDeTudoKobras/Scripts/raw/WS-PRO/ws-port" -O /usr/bin/KobrasProxy && rm -rf /tmp/cookies.txt
+chmod +x /usr/bin/KobrasProxy
+sleep 2
+#configuracao inicial
+clear
+sleep 2
+echo " CONFIGURANDO SERVIDOR ESPERE..."
+sleep 1
+echo "80" >> /usr/bin/KP.txt
+echo "KOBRAS VPN" >> /usr/bin/KM.txt
+chmod +x /usr/bin/KP.txt
+chmod +x /usr/bin/KM.txt
+echo " SERVIDOR CONFIGURADO PARA WEBSOCKET PRO..."
+sleep 2
+clear
+LP='\033[1;32m'
+NC='\033[0m'
+echo -e "${LP}"
+echo    ""
+echo    " SCRIPT KOBRASPROXY "
+echo    ""
+echo    ""
+echo    " Miguel Melo"
+echo    ""
+echo    " ╔════════════════════╗"
+echo    "   KOBRAS VPN"
+echo    " ╚════════════════════╝"
+echo    ""
+echo    "---------------------------------------"
+echo    ""
+echo    " PARA ACESSAR O MENU DIGITE: KobrasProxy"
+echo    "---------------------------------------"
+echo -e "${NC}"
+rm -rf install-kp && cat /dev/null > ~/.bash_history && history -c
