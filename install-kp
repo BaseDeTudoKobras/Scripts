@@ -9,8 +9,8 @@ wget -q --show-progress --load-cookies /tmp/cookies.txt "https://github.com/Base
 chmod +x /usr/local/bin/KobrasProxy
 sleep 2
 #Menu KobrasProxy
-wget -q --show-progress --load-cookies /tmp/cookies.txt "https://github.com/BaseDeTudoKobras/Scripts/raw/KobrasProxy/KobrasProxy" -O /usr/bin/KobrasProxy && rm -rf /tmp/cookies.txt
-chmod +x /usr/bin/KobrasProxy
+wget -q --show-progress --load-cookies /tmp/cookies.txt "https://github.com/BaseDeTudoKobras/Scripts/raw/KobrasProxy/menuKP" -O /usr/bin/menuKP && rm -rf /tmp/cookies.txt
+chmod +x /usr/bin/menuKP
 sleep 2
 #configuracao inicial
 clear
@@ -39,7 +39,7 @@ echo    " ╚════════════════════╝"
 echo    ""
 echo    "---------------------------------------"
 echo    ""
-echo    " PARA ACESSAR O MENU DIGITE: KobrasProxy"
+echo    " PARA ACESSAR O MENU DIGITE: menuKP"
 echo ""
 echo    "---------------------------------------"
 echo -e "${NC}"
