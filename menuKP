@@ -54,8 +54,8 @@
     screen -r -S 'KobrasProxy' -X quit
     clear
     echo " REINICIANDO O KOBRASPROXY..."
+    sleep 3
     screen -dmS KobrasProxy /usr/local/bin/KobrasProxy -proxy_port 0.0.0.0:$OPP1 -msg="${MSG}"
-    sleep 2
     menuKP
     else
         echo ""
@@ -72,13 +72,13 @@
     read -p " ESCREVA O STATUS: " OPP2
     if [[ $OPP2 != @() ]]; then
     screen -r -S 'KobrasProxy' -X quit
+    clear
+    echo " REINICIANDO O KOBRASPROXY..."
+    sleep 3
     if [[ $(netstat -tlpn | grep -w $PORTA) = @() ]]; then
     sed -i 'd' /usr/bin/KM.txt
     echo "${OPP2}" >> /usr/bin/KM.txt
-    clear
-    echo " REINICIANDO O KOBRASPROXY..."
     screen -dmS KobrasProxy /usr/local/bin/KobrasProxy -proxy_port 0.0.0.0:$PORTA -msg="${OPP2}"
-    sleep 2
     menuKP
     else
         echo ""
@@ -99,10 +99,10 @@
     if [[ $OP == @(3) ]]; then
     screen -r -S 'KobrasProxy' -X quit
     clear
-    if [[ $(netstat -tlpn | grep -w $PORTA) = @() ]]; then
     echo " REINICIANDO O KOBRASPROXY..."
+    sleep 3
+    if [[ $(netstat -tlpn | grep -w $PORTA) = @() ]]; then
     screen -dmS KobrasProxy /usr/local/bin/KobrasProxy -proxy_port 0.0.0.0:$PORTA -msg="${MSG}"
-    sleep 2
     menuKP
     else
         echo ""
